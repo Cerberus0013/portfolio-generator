@@ -1,19 +1,24 @@
 const inquirer = require("inquirer");
 
 const promptProject = portfolioData => {
-  //if theres no 'projects array property create one
-  if(!portfolioData.projects){
-  portfolioData.projects = []
-  }
+// if there no project array, create one
+if(!portfolioData.projects){ 
+portfolioData.projects =[]
+ 
 }
-.then(projectData => {
+
+inquirer.prompt().then (projectData => {
   portfolioData.projects.push(projectData);
-  if (projectData.confirmAddProject) {
+  if(projectData.confirmAddProject){
     return promptProject(portfolioData);
-  } else {
+  }else {
     return portfolioData;
   }
-});
+})
+ 
+} 
+  //if theres no 'projects array property create one
+ 
 
 // const fs = require('fs')
 // const generatePage = require('./src/page-template.js');
@@ -32,12 +37,28 @@ const promptUser = () => {
     {
       type: "input",
       name: "name",
-      message: "What is your name?",
+      message: "What is your name? (Required)",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your name");
+          return false;
+        }
+      },
     },
     {
       type: "input",
       name: "github",
-      message: "Enter your GitHub Username",
+      message: "Enter your GitHub Username (Required",
+      validate: (githubInput) => {
+        if (githubInput) {
+          return true;
+        } else {
+          console.log("Please enter your Github Name");
+          return false;
+        }
+      },
     },
     {
       type: "input",
@@ -58,12 +79,28 @@ return inquirer.prompt([
   {
     type: "imput",
     name: "name",
-    message: "What is the name of your project?",
+    message: "What is the name of your project (Required)?",
+    validate: (projectNameInput) => {
+      if (projectNameInput) {
+        return true;
+      } else {
+        console.log("Please enter your Project's name");
+        return false;
+      }
+    },
   },
   {
     type: "input",
     name: "description",
     message: "Provide a description of the project (Required)",
+    validate: (descriptionInput) => {
+      if (descriptionInput) {
+        return true;
+      } else {
+        console.log("Please enter your description");
+        return false;
+      }
+    },
   },
   {
     type: "checkbox",
@@ -83,6 +120,14 @@ return inquirer.prompt([
     type: "input",
     name: "link",
     message: "Enter the Gihub link to you project (Required)",
+    validate: (linkInput) => {
+      if (linkInput) {
+        return true;
+      } else {
+        console.log("Please enter your Github Link");
+        return false;
+      }
+    },
   },
   {
     type: "confirm",

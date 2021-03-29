@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Cerberus0013/portfolio-generator#readme",
   "dependencies": {
-    "inquirer": "^8.0.0"
+    "inquirer": "^8.0.0",
+    "jshint": "^2.12.0"
   }
 }
